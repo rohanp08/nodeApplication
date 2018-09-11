@@ -1,0 +1,102 @@
+<h2>NODE APPLICATION</h2>
+<h4>SELECT AN OPERATION FROM THE FOLLOWING:</h4>
+
+<div class="tab">
+  <button class="tablinks" (click)="Select()">Select</button>
+  <button class="tablinks" (click)="Insert()">Insert</button>
+  <button class="tablinks" (click)="Delete()">Delete</button>
+  <button class="tablinks" (click)="Update()">Update</button>
+</div>
+<br />
+<br />
+<div class = "container" *ngIf="select != false">
+  <table id="user">
+    <tr>
+      <th>PID</th>
+      <th>Name</th>
+      <th>Team</th>
+      <th>Wins</th>
+      <th>Kills</th>
+      <th>Deaths</th>
+    </tr>
+    <tr *ngFor="let player of players">
+      <td>{{ player.PID }}</td>
+      <td>{{ player.name }}</td>
+      <td>{{ player.team }}</td>
+      <td>{{ player.win }}</td>
+      <td>{{ player.kills }}</td>
+      <td>{{ player.deaths }}</td>
+    </tr>
+  </table>
+</div>
+<div class = "container" *ngIf="insert != false && insertSuccess == false">
+  ENTER THE RECORD TO BE INSERTED:<br /><br />
+  <table id = "user">
+    <tr>
+      <th>FIELD</th>
+      <th>INPUT</th>
+    </tr>
+    <tr>
+        <td>PID</td>
+        <td><input type="text" [formControl]="pid"></td>
+    </tr>
+    <tr>
+        <td>Name</td>
+        <td><input type="text" [formControl]="name"></td>
+    </tr>
+    <tr>
+        <td>Team</td>
+        <td><input type="text" [formControl]="team"></td>
+    </tr>
+    <tr>
+        <td>Wins</td>
+        <td><input type="text" [formControl]="wins"></td>
+    </tr>
+    <tr>
+        <td>Kills</td>
+        <td><input type="text" [formControl]="kills"></td>
+    </tr>
+    <tr>
+        <td>Deaths</td>
+        <td><input type="text" [formControl]="deaths"></td>
+    </tr>
+  </table>
+  <br />
+  <br />
+  <button class="btn" id="btn1" (click)="insertRecord()">INSERT RECORD</button><br />
+</div>
+<div class = "container" *ngIf="insertSuccess != false">RECORD INSERTED SUCCESSFULLY!</div>
+<div class = "container" *ngIf="delete != false && deleteSuccess == false">
+    ENTER THE RECORD TO BE DELETED:<br /><br />
+    <table id = "user">
+        <tr>
+          <th>FIELD</th>
+          <th>INPUT</th>
+        </tr>
+        <tr>
+            <td>PID</td>
+            <td><input type="text" [formControl]="pidDelete"></td>
+        </tr>
+    </table>
+    <br />
+    <br />
+  <button class="btn" id="btn1" (click)="deleteRecord()">DELETE RECORD</button><br />
+</div>
+<div class = "container" *ngIf="deleteSuccess != false">RECORD DELETED SUCCESSFULLY!</div>
+<div class = "container" *ngIf="update != false && updateSuccess == false">
+    ENTER THE RECORD TO BE UPDATED:<br /><br />
+    <table id = "user">
+        <tr>
+          <th>FIELD</th>
+          <th>INPUT</th>
+        </tr>
+        <tr>
+            <td>PID</td>
+            <td><input type="text" [formControl]="pidUpdate"></td>
+        </tr>
+    </table>
+    <br />
+    <br />
+  <button class="btn" id="btn1" (click)="updateRecord()">UPDATE RECORD</button><br />
+</div>
+<div class = "container" *ngIf="updateSuccess != false">RECORD UPDATED SUCCESSFULLY!</div>
